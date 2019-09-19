@@ -10,4 +10,4 @@ python setup.py
 
 # Usage
 
-GenerateMappability -r hg19.fa -l 150 -o hg19
+GenerateMappability -r hg19.fa -l 150 -o hg19_mappability
