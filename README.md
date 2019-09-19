@@ -9,7 +9,7 @@ cd ./GenerateMappability
 python setup.py
 
 # Usage
-Usage: GenerateMappability [options]
+Usage: GenerateMappability.sh [options]
 
       -r  Reference sequence
       
@@ -21,4 +21,4 @@ Usage: GenerateMappability [options]
       
       -h  Display help info.
 
-Example: GenerateMappability -r hg19.fa -l 150 -t 10 -o hg19_mappability
+Example: GenerateMappability.sh -r hg19.fa -l 150 -t 10 -o hg19_mappability
