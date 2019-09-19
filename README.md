@@ -9,5 +9,16 @@ cd ./GenerateMappability
 python setup.py
 
 # Usage
+Usage: GenerateMappability [options]
 
-GenerateMappability -r hg19.fa -l 150 -o hg19_mappability
+      -r  Reference sequence
+      
+      -l  Read length of sequencing data
+      
+      -o  Prefix of output direction (Default ./tmp)
+      
+      -t  Number of thread (Default 4)
+      
+      -h  Display help info.
+
+Example: GenerateMappability -r hg19.fa -l 150 -t 10 -o hg19_mappability
