@@ -16,7 +16,7 @@ usage(){
     echo -e "      -o  Prefix of output direction (Default ./tmp)"
     echo -e "      -t  Number of thread (Default 4)"
     echo -e "      -h  Display help info."
-    echo -e "example: GenerateMappability -r hg19.fa -l 150 -o hg19_mappability"
+    echo -e "example: GenerateMappability -r hg19.fa -l 150 -t 20 -o hg19_mappability"
 exit 1
 }
 ## No parameters
@@ -30,7 +30,7 @@ refFile=''
 readLength=''
 output='tmp'
 T='4'
-while getopts :r:l:o:h FLAG; do
+while getopts :r:l:o:t:h FLAG; do
   case $FLAG in
     r)  
       refFile=$OPTARG
@@ -54,10 +54,6 @@ while getopts :r:l:o:h FLAG; do
 done
 shift $((OPTIND-1))
 
-if [ $refFile == '' ] || [ $readLength != '' ] ; then
-usage
-exit
-fi
 
 ## Create path
 if [ ! -x "$output" ]; then
@@ -65,13 +61,14 @@ mkdir -p ${output}
 fi
 
 ## Seperate reference
-python SeperateReference.py ${refFile} ${output}
+python ${SoftwareDir}/SplitReference.py ${refFile} ${output}
+echo -e 'Split reference genome'
 
 ### gemtools
 files=$(ls ${output})
-for file in files
+for file in ${files[@]}
 do
-python ReshapeReference.py ${output}/${file} ${output}
+python ${SoftwareDir}/ReshapeReference.py ${output}/${file} ${output}
 gem-indexer -T ${T} -c dna -i ${output}/${file} -o ${output}/${file}
 gem-mappability -T ${T} -I ${output}/${file}.gem -l ${readLength} -o ${output}/${file}
 gem-2-wig -I ${output}/${file}.gem -i ${output}/${file}.mappability -o ${output}/${file}_${readLength}
@@ -84,5 +81,6 @@ rm ${output}/${file}.mappability
 rm ${output}/${file}_${readLength}.wig
 rm ${output}/${file}_${readLength}.sizes
 rm ${output}/${file}
+echo -e 'Finished '${file}
 done
 
