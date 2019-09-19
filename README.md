@@ -1,5 +1,5 @@
 # GenerateMappability
-Generate mappability file for BICseq2 by gemtools
+Generate mappability file for BICseq2 by gemtools.
 
 # Setup
 git clone https://github.com/LinjieWu/GenerateMappability.git
