@@ -21,4 +21,7 @@ Usage: GenerateMappability.sh [options]
       
       -h  Display help info.
 
-Example: GenerateMappability.sh -r hg19.fa -l 150 -t 10 -o hg19_mappability
+Example: GenerateMappability.sh -r hg19.fa -l 150 -t 20 -o hg19_mappability
+
+# Note
+Gemtools need long time when the genome size is large (50 min for human chr1).
