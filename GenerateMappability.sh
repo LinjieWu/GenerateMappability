@@ -5,7 +5,7 @@
 ####   Date: 20190919
 ######################################################################
 SoftwareDir='.'
-export PATH=${SoftwareDir}/src/gemtools-1.7.1-i3/bin/:$PATH
+export PATH=${SoftwareDir}/gemtools-1.7.1-i3/bin/:$PATH
 
 #### Usage
 usage(){
